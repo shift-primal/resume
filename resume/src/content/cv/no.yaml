@@ -32,7 +32,7 @@ sidebar:
       items:
           - icon: school
             title: GET Academy
-            description: GET Prepared, frontend · Fagskolen
+            description: Fagskole, frontend · undervisning fullført, gjenstår praksis
             period:
                 start: 2025
 
@@ -44,7 +44,7 @@ sidebar:
             items:
                 - TypeScript
                 - React
-                - TanStack Start / Router / Query
+                - TanStack Start
                 - Tailwind CSS
                 - Universell utforming (WCAG)
                 - shadcn/ui
@@ -52,7 +52,7 @@ sidebar:
           - icon: server
             label: Backend
             items:
-                - Node.js
+                - Node.js / Express
                 - "C# / ASP.NET Core"
                 - WebSockets
                 - Zod
@@ -99,9 +99,10 @@ main:
     - type: text
       title: Om meg
       body: >-
-          Fullstack-utvikler under utdanning ved GET Academy. Liker best å bygge
-          hele løsninger, fra database til grensesnitt, og få dem ut i bruk. Ser
-          etter praksisplass eller juniorstilling innen webutvikling.
+          Student ved GET Academy. Undervisning er ferdig, og jeg trenger en praksisplass for
+          å fullføre fagskolen. Jeg bygger hele løsninger fra database til
+          grensesnitt, med vekt på tilgangsstyring, testing og universell utforming.
+          Ser etter praksisplass eller juniorstilling innen webutvikling.
 
     - type: entries
       title: Prosjekter
@@ -117,40 +118,48 @@ main:
                 [TanStack Start, Medusa v2, Stripe, PostgreSQL, Railway, Resend]
 
           - title: Grønt Lys
-            status: i utvikling
-            subtitle: SaaS for faglige ledere ved trafikkskoler
+            status: i utvikling (demo ved forespørsel)
+            subtitle: SaaS for faglige ledere ved trafikkskoler · utvikler alene
             description: >-
-                Hjelper faglig leder med å holde oversikt over lærerne, oppfølgingen
-                og dokumentasjonen regelverket krever.
+                Hver skole er isolert med RLS i PostgreSQL. Fire roller med
+                egne tilganger, tofaktor, og en revisjonslogg der rader er append-only.
+                Bakgrunnsjobber sender e-post og sletter data etter
+                faste regler (GDPR).
             tech:
                 [
                     TanStack Start,
                     PostgreSQL,
+                    Drizzle,
                     Graphile Worker,
-                    Vitest,
+                    Better Auth,
                     Playwright + axe,
                 ]
 
-          - title: Wastescope
-            link:
-                href: https://ws.haugestol.com
-                label: ws.haugestol.com
-            subtitle: Dashboard for personlig økonomi med eget bibliotek for parsing
+          - title: spot
+            links:
+                - href: https://spot.haugestol.com
+                  label: spot.haugestol.com
+            subtitle: Delt tegnebrett i sanntid, inspirert av r/place
             description: >-
-                Last opp en eksport fra banken, så blir alt kategorisert og du ser hvor
-                pengene går. Parsingen gjøres av txcategorizer, mitt eget bibliotek på
-                npm.
-            tech: [Neon, Drizzle ORM, Better Auth, Recharts]
+                Mange tegner samtidig på ett lerret, og ser
+                hverandres pekere i realtime. Strøk sendes over WebSockets, valideres og
+                rate-limites på serveren, og lagres i ruter i SQLite. Klienten henter bare
+                rutene som vises, og serveren rydder bort strøk som er helt skjult.
+            tech: [React, Socket.IO, Express, SQLite, Canvas, Docker]
 
-          - title: Pokédex
-            link:
-                href: https://pokemon.haugestol.com
-                label: pokemon.haugestol.com
-            subtitle: Læringsprosjekt
+          - title: Wastescope
+            links:
+                - href: https://ws.haugestol.com
+                  label: ws.haugestol.com
+                - href: https://www.npmjs.com/package/txcategorizer
+                  label: "npm: txcategorizer"
+
+            subtitle: Dashboard for personlig økonomi
             description: >-
-                Full Pokédex bygget på PokéAPI. Henter og cacher data på forhånd. Laget
-                for å lære mer om bruk av API-er og UI/UX.
-            tech: [TanStack Query / Router, Tailwind CSS, Radix UI, Zod]
+                Last opp en eksport fra DNB eller Valle, så blir transaksjonene
+                kategorisert og du ser hvor pengene går. Parsingen ligger i txcategorizer,
+                mitt eget TypeScript-bibliotek publisert på npm.
+            tech: [Drizzle ORM, Better Auth, Recharts, txcategorizer]
 
     - type: entries
       title: Arbeidserfaring
@@ -161,8 +170,6 @@ main:
                 end: 2025
             subtitle: Bragd Utvikling
             description: >-
-                Her begynte jeg å programmere. Startet med Python og laget en app i
-                Django, før jeg gikk over til React, med veiledning fra en utvikler.
                 Holdt teknologikurs for kollegaer og bidro med medieproduksjon og
                 drift av Google Workspace.
 

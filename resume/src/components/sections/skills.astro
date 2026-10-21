@@ -1,7 +1,6 @@
 ---
 import Icon from "#/components/ui/icon.astro";
 import SideSection from "#/components/ui/side-section.astro";
-import { splitHyphenated } from "#/lib/format";
 import type { SkillsSection } from "#/lib/types";
 
 type Props = SkillsSection;
@@ -10,30 +9,23 @@ const { title, groups } = Astro.props;
 ---
 
 <SideSection title={title}>
-	<dl>
+	<dl class="flex flex-col gap-2.5">
 		{groups.map((group) => (
-			<>
-				<dt class="flex items-center gap-2 font-semibold not-first:mt-2">
+			<div id={group.label}>
+				<dt class="flex items-center gap-2 font-semibold">
 					<Icon name={group.icon} class="size-[3.2mm] shrink-0" />
-					{group.label}
+					<span>{group.label}</span>
 				</dt>
-				<dd>
-					{group.items.map((skill, i) => (
-						<>
-							{i > 0 && ", "}
-							{splitHyphenated(skill).map((part) =>
-								part.hyphenated ? (
-									<span class="whitespace-nowrap">
-										{part.text}
-									</span>
-								) : (
-									part.text
-								),
-							)}
-						</>
-					))}
+				<dd class="overflow-hidden">
+					<ul class="-ml-2.5 flex flex-wrap">
+						{group.items.map((skill) => (
+							<li class="whitespace-nowrap before:inline-block before:w-2.5 before:text-center before:content-['·']">
+								{skill}
+							</li>
+						))}
+					</ul>
 				</dd>
-			</>
+			</div>
 		))}
 	</dl>
 </SideSection>

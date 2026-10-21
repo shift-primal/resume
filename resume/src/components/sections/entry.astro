@@ -4,20 +4,28 @@ import { formatPeriod } from "#/lib/format";
 
 type Props = Entry;
 
-const { title, subtitle, description, period, status, link, tech } =
+const { title, subtitle, description, period, status, links, tech } =
 	Astro.props;
+
+const separatorSymbol = " · ";
 ---
 
 <article>
 	<div class="flex items-baseline justify-between gap-4">
 		<h3 class="text-title leading-[1.35] font-semibold">{title}</h3>
-		{link ? (
-			<a
-				class="shrink-0 font-medium whitespace-nowrap text-navy"
-				href={link.href}
-			>
-				{link.label}
-			</a>
+		{links?.length ? (
+			<span class="shrink-0 whitespace-nowrap">
+				{links.map((l, i) => (
+					<>
+						{i > 0 && (
+							<span class="text-muted">{separatorSymbol}</span>
+						)}
+						<a class="font-medium text-navy" href={l.href}>
+							{l.label}
+						</a>
+					</>
+				))}
+			</span>
 		) : period ? (
 			<span class="shrink-0 whitespace-nowrap text-muted">
 				{formatPeriod(period)}
@@ -33,6 +41,8 @@ const { title, subtitle, description, period, status, link, tech } =
 	<p class="font-medium text-pretty text-navy">{subtitle}</p>
 	<p class="text-pretty">{description}</p>
 	{tech && (
-		<p class="text-small text-pretty text-muted">{tech.join(" · ")}</p>
+		<p class="text-small text-pretty text-muted mt-1">
+			{tech.join(separatorSymbol)}
+		</p>
 	)}
 </article>

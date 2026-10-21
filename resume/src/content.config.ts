@@ -26,7 +26,7 @@ const entry = z.object({
 	description: z.string(),
 	period: period.optional(),
 	status: z.string().optional(),
-	link: link.optional(),
+	links: z.array(link).optional(),
 	tech: z.array(z.string()).optional(),
 });
 
