@@ -13,7 +13,7 @@ const { cv } = Astro.props;
 
 <div class="absolute inset-x-0 top-0 h-(--header-height) border-b-[1.4mm] border-accent bg-navy shadow-[0_var(--header-rule)_0_var(--color-navy)]"></div>
 
-<div class="relative grid grid-cols-[var(--sidebar-width)_1fr] grid-rows-[auto_1fr] gap-x-12 gap-y-6 px-(--page-side) pt-(--page-top)">
+<div class="relative grid grid-cols-[var(--sidebar-width)_1fr] grid-rows-[auto_1fr] gap-x-12 gap-y-5 px-(--page-side) pt-(--page-top)">
 	<Header name={cv.name} role={cv.role} />
 	<Sidebar photo={cv.photo} sections={cv.sidebar} />
 	<MainColumn sections={cv.main} />

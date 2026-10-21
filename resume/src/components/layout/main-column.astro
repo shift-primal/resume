@@ -10,7 +10,7 @@ interface Props {
 const { sections } = Astro.props;
 ---
 
-<div class="col-start-2 row-start-2 flex flex-col gap-6 text-body leading-prose">
+<div class="col-start-2 row-start-2 flex flex-col gap-5 text-body leading-prose">
 	{sections.map((section) => {
 		switch (section.type) {
 			case "text":
