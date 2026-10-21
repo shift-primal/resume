@@ -101,7 +101,7 @@ main:
       body: >-
           Student ved GET Academy. Undervisning er ferdig, og jeg trenger en praksisplass for
           å fullføre fagskolen. Jeg bygger hele løsninger fra database til
-          grensesnitt, med vekt på tilgangsstyring, testing og universell utforming.
+          grensesnitt, med vekt på solid struktur, testing og brukervennlighet.
           Ser etter praksisplass eller juniorstilling innen webutvikling.
 
     - type: entries
@@ -135,15 +135,15 @@ main:
                     Playwright + axe,
                 ]
 
-          - title: spot
+          - title: Spot
             links:
                 - href: https://spot.haugestol.com
                   label: spot.haugestol.com
             subtitle: Delt tegnebrett i sanntid, inspirert av r/place
             description: >-
                 Mange tegner samtidig på ett lerret, og ser
-                hverandres pekere i realtime. Strøk sendes over WebSockets, valideres og
-                rate-limites på serveren, og lagres i ruter i SQLite. Klienten henter bare
+                hverandres pekere i sanntid. Strøk sendes over WebSockets, valideres, blir rate-limited 
+                på serveren, og lagres i ruter i SQLite. Klienten henter bare
                 rutene som vises, og serveren rydder bort strøk som er helt skjult.
             tech: [React, Socket.IO, Express, SQLite, Canvas, Docker]
 
