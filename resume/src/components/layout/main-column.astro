@@ -1,0 +1,26 @@
+---
+import type { Cv } from "#/lib/types";
+import Text from "#/components/sections/text.astro";
+import Entries from "#/components/sections/entries.astro";
+
+interface Props {
+	sections: Cv["main"];
+}
+
+const { sections } = Astro.props;
+---
+
+<div class="col-start-2 row-start-2 flex flex-col gap-6 text-body leading-prose">
+	{sections.map((section) => {
+		switch (section.type) {
+			case "text":
+				return <Text {...section} />;
+			case "entries":
+				return <Entries {...section} />;
+			default: {
+				const unhandled: never = section;
+				throw new Error(`Ukjent seksjon: ${JSON.stringify(unhandled)}`);
+			}
+		}
+	})}
+</div>

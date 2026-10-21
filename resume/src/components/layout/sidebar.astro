@@ -2,19 +2,39 @@
 import { Image } from "astro:assets";
 import type { Cv } from "#/lib/types";
 import Contact from "#/components/sections/contact.astro";
+import Education from "#/components/sections/education.astro";
+import Skills from "#/components/sections/skills.astro";
 
-interface Props {
+type Props = {
 	photo: Cv["photo"];
 	sections: Cv["sidebar"];
-}
+};
 
 const { photo, sections } = Astro.props;
 ---
 
-<aside class="sidebar">
-	<Image class="photo" src={photo.src} alt={photo.alt} width={640} />
+<div class="col-start-1 row-[1/span_2] flex flex-col gap-6 text-body leading-list">
+	<Image
+		class="block h-65 w-full border-[1mm] border-accent object-cover object-center"
+		src={photo.src}
+		alt={photo.alt}
+		width={640}
+		format="jpg"
+	/>
 
-	{sections.map(
-		(section) => section.type === "contact" && <Contact {...section} />,
-	)}
-</aside>
+	{sections.map((section) => {
+		switch (section.type) {
+			case "contact":
+				return <Contact {...section} />;
+			case "education":
+				return <Education {...section} />;
+			case "skills":
+				return <Skills {...section} />;
+
+			default: {
+				const unhandled: never = section;
+				throw new Error(`Ukjent seksjon: ${JSON.stringify(unhandled)}`);
+			}
+		}
+	})}
+</div>

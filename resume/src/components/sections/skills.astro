@@ -1,50 +1,39 @@
-<section class="side-section">
-	<h2>Ferdigheter</h2>
-	<dl class="skills">
-		<dt>
-			<img src="assets/monitor.svg" alt="" />
-			Frontend
-		</dt>
-		<dd>
-			TypeScript, React, TanStack (Start, Router, Query, Form), Tailwind
-			CSS, shadcn/ui
-		</dd>
-		<dt>
-			<img src="assets/server.svg" alt="" />
-			Backend
-		</dt>
-		<dd>Node.js, Medusa, C# / .NET, REST, WebSockets, Zod</dd>
-		<dt>
-			<img src="assets/database.svg" alt="" />
-			Data
-		</dt>
-		<dd>PostgreSQL, Drizzle ORM</dd>
-		<dt>
-			<img src="assets/cloud.svg" alt="" />
-			Drift
-		</dt>
-		<dd>
-			Docker, Hetzner (VPS), Coolify, Railway, Cloudflare, GitHub Actions
-			(CI/CD)
-		</dd>
-		<dt>
-			<img src="assets/key-round.svg" alt="" />
-			Secrets
-		</dt>
-		<dd>Varlock, Bitwarden Secrets Manager</dd>
-		<dt>
-			<img src="assets/flask-conical.svg" alt="" />
-			Testing
-		</dt>
-		<dd>Vitest, Playwright</dd>
-		<dt>
-			<img src="assets/wrench.svg" alt="" />
-			Verktøy
-		</dt>
-		<dd>
-			Git, Linux, Neovim, Figma,
-			<span class="nowrap">AI-assistert</span>
-			utvikling (Claude Code)
-		</dd>
+---
+import Icon from "#/components/ui/icon.astro";
+import SideSection from "#/components/ui/side-section.astro";
+import { splitHyphenated } from "#/lib/format";
+import type { SkillsSection } from "#/lib/types";
+
+type Props = SkillsSection;
+
+const { title, groups } = Astro.props;
+---
+
+<SideSection title={title}>
+	<dl>
+		{groups.map((group) => (
+			<>
+				<dt class="flex items-center gap-2 font-semibold not-first:mt-2">
+					<Icon name={group.icon} class="size-[3.2mm] shrink-0" />
+					{group.label}
+				</dt>
+				<dd>
+					{group.items.map((skill, i) => (
+						<>
+							{i > 0 && ", "}
+							{splitHyphenated(skill).map((part) =>
+								part.hyphenated ? (
+									<span class="whitespace-nowrap">
+										{part.text}
+									</span>
+								) : (
+									part.text
+								),
+							)}
+						</>
+					))}
+				</dd>
+			</>
+		))}
 	</dl>
-</section>
+</SideSection>

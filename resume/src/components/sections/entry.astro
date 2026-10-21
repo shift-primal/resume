@@ -1,0 +1,38 @@
+---
+import type { Entry } from "#/lib/types";
+import { formatPeriod } from "#/lib/format";
+
+type Props = Entry;
+
+const { title, subtitle, description, period, status, link, tech } =
+	Astro.props;
+---
+
+<article>
+	<div class="flex items-baseline justify-between gap-4">
+		<h3 class="text-title leading-[1.35] font-semibold">{title}</h3>
+		{link ? (
+			<a
+				class="shrink-0 font-medium whitespace-nowrap text-navy"
+				href={link.href}
+			>
+				{link.label}
+			</a>
+		) : period ? (
+			<span class="shrink-0 whitespace-nowrap text-muted">
+				{formatPeriod(period)}
+			</span>
+		) : (
+			status && (
+				<span class="shrink-0 whitespace-nowrap text-muted">
+					{status}
+				</span>
+			)
+		)}
+	</div>
+	<p class="font-medium text-pretty text-navy">{subtitle}</p>
+	<p class="text-pretty">{description}</p>
+	{tech && (
+		<p class="text-small text-pretty text-muted">{tech.join(" · ")}</p>
+	)}
+</article>

@@ -9,7 +9,7 @@ export const iconKeys = [
 	"server",
 	"database",
 	"cloud",
-	"key-round",
+	"plug",
 	"flask-conical",
 	"wrench",
 ] as const;

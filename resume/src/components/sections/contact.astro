@@ -4,18 +4,19 @@ import SideSection from "#/components/ui/side-section.astro";
 import Icon from "#/components/ui/icon.astro";
 
 type Props = ContactSection;
+
 const { title, items } = Astro.props;
 ---
 
 <SideSection title={title}>
-	<ul class="contact">
+	<ul class="flex flex-col gap-1">
 		{items.map((item) => {
 			const Tag = item.href ? "a" : "span";
 
 			return (
 				<li>
-					<Tag href={item.href} class="contact-row">
-						<Icon name={item.icon} />
+					<Tag href={item.href} class="flex items-center gap-2">
+						<Icon name={item.icon} class="size-[3.6mm] shrink-0" />
 						<span>{item.label}</span>
 					</Tag>
 				</li>

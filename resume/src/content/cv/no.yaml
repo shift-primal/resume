@@ -1,10 +1,10 @@
-lang: "no" # quoted: in YAML 1.1 a bare `no` means false
+lang: "no"
 name:
     first: Kasper
     last: Haugestøl
 role: Fullstack-utvikler
 photo:
-    src: ../../assets/kasper.jpg # relative to this file, for the image() helper
+    src: ../../assets/kasper.jpg
     alt: Kasper Haugestøl
 
 # Left column, rendered top to bottom
@@ -44,59 +44,57 @@ sidebar:
             items:
                 - TypeScript
                 - React
-                - TanStack (Start, Router, Query, Form)
+                - TanStack Start / Router / Query
                 - Tailwind CSS
+                - Universell utforming (WCAG)
                 - shadcn/ui
+
           - icon: server
             label: Backend
             items:
                 - Node.js
-                - Medusa
-                - "C# / .NET"
-                - REST
+                - "C# / ASP.NET Core"
                 - WebSockets
                 - Zod
+                - Medusa
+
           - icon: database
             label: Data
             items:
                 - PostgreSQL
                 - Drizzle ORM
+
           - icon: cloud
             label: Drift
             items:
                 - Docker
-                - Hetzner (VPS)
-                - Coolify
-                - Railway
-                - Cloudflare
                 - GitHub Actions (CI/CD)
-          - icon: key-round
-            label: Secrets
+                - Bakgrunnsjobber (Graphile Worker)
+                - Cloudflare
+                - Hetzner / Coolify
+                - Railway
+
+          - icon: plug
+            label: Integrasjoner
             items:
-                - Varlock
-                - Bitwarden Secrets Manager
+                - Stripe
+                - Better Auth
+                - Resend
+
           - icon: flask-conical
             label: Testing
             items:
                 - Vitest
                 - Playwright
+                - Axe
+
           - icon: wrench
             label: Verktøy
             items:
                 - Git
                 - Linux
-                - Neovim
                 - Figma
-                # The old markup kept "AI-assistert" on one line (span.nowrap)
-                - AI-assistert utvikling (Claude Code)
 
-    - type: list
-      title: Språk
-      items:
-          - Norsk (morsmål)
-          - Engelsk (flytende)
-
-# Right column, rendered top to bottom
 main:
     - type: text
       title: Om meg
@@ -109,7 +107,7 @@ main:
       title: Prosjekter
       items:
           - title: Office & Off
-            meta: i utvikling
+            status: i utvikling
             subtitle: Medgründer og utvikler · nettbutikk for klær
             description: >-
                 Nettbutikk jeg bygger sammen med to medgründere. Jeg har ansvaret for
@@ -119,12 +117,19 @@ main:
                 [TanStack Start, Medusa v2, Stripe, PostgreSQL, Railway, Resend]
 
           - title: Grønt Lys
-            meta: i utvikling
+            status: i utvikling
             subtitle: SaaS for faglige ledere ved trafikkskoler
             description: >-
                 Hjelper faglig leder med å holde oversikt over lærerne, oppfølgingen
                 og dokumentasjonen regelverket krever.
-            tech: [TanStack Start, Axe/Playwright, Vitest, Graphile Worker]
+            tech:
+                [
+                    TanStack Start,
+                    PostgreSQL,
+                    Graphile Worker,
+                    Vitest,
+                    Playwright + axe,
+                ]
 
           - title: Wastescope
             link:
@@ -135,7 +140,7 @@ main:
                 Last opp en eksport fra banken, så blir alt kategorisert og du ser hvor
                 pengene går. Parsingen gjøres av txcategorizer, mitt eget bibliotek på
                 npm.
-            tech: [TypeScript, PostgreSQL, Drizzle ORM, Better Auth, Recharts]
+            tech: [Neon, Drizzle ORM, Better Auth, Recharts]
 
           - title: Pokédex
             link:

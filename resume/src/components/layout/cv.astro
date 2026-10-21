@@ -1,6 +1,8 @@
 ---
 import type { Cv } from "#/lib/types";
-import Sidebar from "./sidebar.astro";
+import Header from "#/components/layout/header.astro";
+import Sidebar from "#/components/layout/sidebar.astro";
+import MainColumn from "#/components/layout/main-column.astro";
 
 interface Props {
 	cv: Cv;
@@ -9,30 +11,10 @@ interface Props {
 const { cv } = Astro.props;
 ---
 
-<!-- Decorative background -->
-<div class="header-band"></div>
+<div class="absolute inset-x-0 top-0 h-(--header-height) border-b-[1.4mm] border-accent bg-navy shadow-[0_var(--header-rule)_0_var(--color-navy)]"></div>
 
-<div class="layout">
-	<!-- ===== Name (right column, inside the header band) ===== -->
-	<header class="name-block">
-		<h1>
-			<span class="first-name">Kasper</span>
-			<span class="last-name">Haugestøl</span>
-		</h1>
-		<p class="role">Fullstack-utvikler</p>
-	</header>
-
+<div class="relative grid grid-cols-[var(--sidebar-width)_1fr] grid-rows-[auto_1fr] gap-x-12 gap-y-6 px-(--page-side) pt-(--page-top)">
+	<Header name={cv.name} role={cv.role} />
 	<Sidebar photo={cv.photo} sections={cv.sidebar} />
-
-	<main class="main">
-		<section class="main-section">
-			<h2>Om meg</h2>
-			<p>
-				Fullstack-utvikler under utdanning ved GET Academy. Liker best å
-				bygge hele løsninger, fra database til grensesnitt, og få dem ut
-				i bruk. Ser etter praksisplass eller juniorstilling innen
-				webutvikling.
-			</p>
-		</section>
-	</main>
+	<MainColumn sections={cv.main} />
 </div>

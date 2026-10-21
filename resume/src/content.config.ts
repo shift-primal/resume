@@ -12,12 +12,6 @@ const period = z
 		message: "end kan ikke være før start",
 	});
 
-const list = z.object({
-	type: z.literal("list"),
-	title: z.string(),
-	items: z.array(z.string()).min(1),
-});
-
 const text = z.object({
 	type: z.literal("text"),
 	title: z.string(),
@@ -90,12 +84,7 @@ const cv = defineCollection({
 			role: z.string(),
 			photo: z.object({ src: image(), alt: z.string() }),
 			sidebar: z.array(
-				z.discriminatedUnion("type", [
-					contact,
-					list,
-					education,
-					skills,
-				]),
+				z.discriminatedUnion("type", [contact, education, skills]),
 			),
 			main: z.array(z.discriminatedUnion("type", [text, entries])),
 		}),

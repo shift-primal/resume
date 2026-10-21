@@ -1,0 +1,12 @@
+---
+import type { TextSection } from "#/lib/types";
+import MainSection from "#/components/ui/main-section.astro";
+
+type Props = TextSection;
+
+const { title, body } = Astro.props;
+---
+
+<MainSection title={title}>
+	<p class="text-pretty">{body}</p>
+</MainSection>

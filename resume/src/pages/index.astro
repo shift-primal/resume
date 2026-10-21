@@ -18,9 +18,9 @@ const cv = entry.data;
 		<meta name="generator" content={Astro.generator} />
 		<title>CV - {cv.name.first} {cv.name.last}</title>
 	</head>
-	<body>
-		<div class="page">
+	<body class="py-10 print:p-0">
+		<main class="relative mx-auto h-297 w-210 overflow-hidden bg-paper shadow-[0_2mm_8mm_rgb(0_0_0/0.3)] print:m-0 print:shadow-none">
 			<Cv cv={cv} />
-		</div>
+		</main>
 	</body>
 </html>

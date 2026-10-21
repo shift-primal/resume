@@ -1,6 +1,6 @@
 ---
 import Phone from "@northsoon/phosphor-icons-astro/icons/Phone.astro";
-import Envelope from "@northsoon/phosphor-icons-astro/icons/Envelope.astro";
+import EnvelopeSimple from "@northsoon/phosphor-icons-astro/icons/EnvelopeSimple.astro";
 import MapPin from "@northsoon/phosphor-icons-astro/icons/MapPin.astro";
 import Globe from "@northsoon/phosphor-icons-astro/icons/Globe.astro";
 import GithubLogo from "@northsoon/phosphor-icons-astro/icons/GithubLogo.astro";
@@ -9,14 +9,14 @@ import Monitor from "@northsoon/phosphor-icons-astro/icons/Monitor.astro";
 import HardDrives from "@northsoon/phosphor-icons-astro/icons/HardDrives.astro";
 import Database from "@northsoon/phosphor-icons-astro/icons/Database.astro";
 import Cloud from "@northsoon/phosphor-icons-astro/icons/Cloud.astro";
-import Key from "@northsoon/phosphor-icons-astro/icons/Key.astro";
+import Plug from "@northsoon/phosphor-icons-astro/icons/Plug.astro";
 import Flask from "@northsoon/phosphor-icons-astro/icons/Flask.astro";
 import Wrench from "@northsoon/phosphor-icons-astro/icons/Wrench.astro";
 import type { IconKey } from "#/lib/icons";
 
 const icons: Record<IconKey, typeof Phone> = {
 	phone: Phone,
-	mail: Envelope,
+	mail: EnvelopeSimple,
 	"map-pin": MapPin,
 	globe: Globe,
 	github: GithubLogo,
@@ -25,19 +25,21 @@ const icons: Record<IconKey, typeof Phone> = {
 	server: HardDrives,
 	database: Database,
 	cloud: Cloud,
-	"key-round": Key,
+	plug: Plug,
 	"flask-conical": Flask,
 	wrench: Wrench,
 };
 
-interface Props {
+type Props = {
 	name: IconKey;
 	size?: string;
+	weight?: "thin" | "light" | "regular" | "bold" | "fill" | "duotone";
 	class?: string;
-}
+};
 
-const { name, ...rest } = Astro.props;
+// Bold matches the heavy strokes of the old Lucide icons (stroke-width 3)
+const { name, weight = "bold", ...rest } = Astro.props;
 const Component = icons[name];
 ---
 
-<Component {...rest} />
+<Component weight={weight} {...rest} />

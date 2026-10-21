@@ -1,11 +1,27 @@
-<section class="side-section">
-	<h2>Utdanning</h2>
-	<div class="edu">
-		<h3>
-			<img src="assets/school.svg" alt="" />
-			GET Academy
-		</h3>
-		<p>GET Prepared, frontend · Fagskolen</p>
-		<p class="entry-meta">2025 – nå</p>
-	</div>
-</section>
+---
+import Icon from "#/components/ui/icon.astro";
+import SideSection from "#/components/ui/side-section.astro";
+import { formatPeriod } from "#/lib/format";
+import type { EducationSection } from "#/lib/types";
+
+type Props = EducationSection;
+
+const { title, items } = Astro.props;
+---
+
+<SideSection title={title}>
+	<ul class="flex flex-col gap-3">
+		{items.map((item) => (
+			<li>
+				<h3 class="flex items-center gap-2 font-semibold">
+					<Icon name={item.icon} class="size-[3.2mm] shrink-0" />
+					{item.title}
+				</h3>
+				<p>{item.description}</p>
+				{item.period && (
+					<p class="text-muted">{formatPeriod(item.period)}</p>
+				)}
+			</li>
+		))}
+	</ul>
+</SideSection>
