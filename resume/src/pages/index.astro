@@ -1,0 +1,26 @@
+---
+import { getEntry } from "astro:content";
+import Cv from "#/components/layout/cv.astro";
+import "#/styles/global.css";
+
+const entry = await getEntry("cv", "no");
+if (!entry) throw new Error("Fant ikke cv/no.yaml");
+
+const cv = entry.data;
+---
+
+<html lang={cv.lang}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>CV - {cv.name.first} {cv.name.last}</title>
+	</head>
+	<body>
+		<div class="page">
+			<Cv cv={cv} />
+		</div>
+	</body>
+</html>

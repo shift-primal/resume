@@ -1,0 +1,178 @@
+lang: "no" # quoted: in YAML 1.1 a bare `no` means false
+name:
+    first: Kasper
+    last: Haugestøl
+role: Fullstack-utvikler
+photo:
+    src: ../../assets/kasper.jpg # relative to this file, for the image() helper
+    alt: Kasper Haugestøl
+
+# Left column, rendered top to bottom
+sidebar:
+    - type: contact
+      title: Kontakt
+      items:
+          - icon: phone
+            label: "+47 970 05 098"
+            href: "tel:+4797005098"
+          - icon: mail
+            label: kasper@haugestol.com
+            href: "mailto:kasper@haugestol.com"
+          - icon: map-pin
+            label: Bøverbru, Innlandet
+          - icon: globe
+            label: haugestol.com
+            href: https://haugestol.com
+          - icon: github
+            label: github.com/shift-primal
+            href: https://github.com/shift-primal
+
+    - type: education
+      title: Utdanning
+      items:
+          - icon: school
+            title: GET Academy
+            description: GET Prepared, frontend · Fagskolen
+            period:
+                start: 2025
+
+    - type: skills
+      title: Ferdigheter
+      groups:
+          - icon: monitor
+            label: Frontend
+            items:
+                - TypeScript
+                - React
+                - TanStack (Start, Router, Query, Form)
+                - Tailwind CSS
+                - shadcn/ui
+          - icon: server
+            label: Backend
+            items:
+                - Node.js
+                - Medusa
+                - "C# / .NET"
+                - REST
+                - WebSockets
+                - Zod
+          - icon: database
+            label: Data
+            items:
+                - PostgreSQL
+                - Drizzle ORM
+          - icon: cloud
+            label: Drift
+            items:
+                - Docker
+                - Hetzner (VPS)
+                - Coolify
+                - Railway
+                - Cloudflare
+                - GitHub Actions (CI/CD)
+          - icon: key-round
+            label: Secrets
+            items:
+                - Varlock
+                - Bitwarden Secrets Manager
+          - icon: flask-conical
+            label: Testing
+            items:
+                - Vitest
+                - Playwright
+          - icon: wrench
+            label: Verktøy
+            items:
+                - Git
+                - Linux
+                - Neovim
+                - Figma
+                # The old markup kept "AI-assistert" on one line (span.nowrap)
+                - AI-assistert utvikling (Claude Code)
+
+    - type: list
+      title: Språk
+      items:
+          - Norsk (morsmål)
+          - Engelsk (flytende)
+
+# Right column, rendered top to bottom
+main:
+    - type: text
+      title: Om meg
+      body: >-
+          Fullstack-utvikler under utdanning ved GET Academy. Liker best å bygge
+          hele løsninger, fra database til grensesnitt, og få dem ut i bruk. Ser
+          etter praksisplass eller juniorstilling innen webutvikling.
+
+    - type: entries
+      title: Prosjekter
+      items:
+          - title: Office & Off
+            meta: i utvikling
+            subtitle: Medgründer og utvikler · nettbutikk for klær
+            description: >-
+                Nettbutikk jeg bygger sammen med to medgründere. Jeg har ansvaret for
+                det tekniske: butikkfronten, backend og betaling, pluss oppsett for
+                deploy og backup.
+            tech:
+                [TanStack Start, Medusa v2, Stripe, PostgreSQL, Railway, Resend]
+
+          - title: Grønt Lys
+            meta: i utvikling
+            subtitle: SaaS for faglige ledere ved trafikkskoler
+            description: >-
+                Hjelper faglig leder med å holde oversikt over lærerne, oppfølgingen
+                og dokumentasjonen regelverket krever.
+            tech: [TanStack Start, Axe/Playwright, Vitest, Graphile Worker]
+
+          - title: Wastescope
+            link:
+                href: https://ws.haugestol.com
+                label: ws.haugestol.com
+            subtitle: Dashboard for personlig økonomi med eget bibliotek for parsing
+            description: >-
+                Last opp en eksport fra banken, så blir alt kategorisert og du ser hvor
+                pengene går. Parsingen gjøres av txcategorizer, mitt eget bibliotek på
+                npm.
+            tech: [TypeScript, PostgreSQL, Drizzle ORM, Better Auth, Recharts]
+
+          - title: Pokédex
+            link:
+                href: https://pokemon.haugestol.com
+                label: pokemon.haugestol.com
+            subtitle: Læringsprosjekt
+            description: >-
+                Full Pokédex bygget på PokéAPI. Henter og cacher data på forhånd. Laget
+                for å lære mer om bruk av API-er og UI/UX.
+            tech: [TanStack Query / Router, Tailwind CSS, Radix UI, Zod]
+
+    - type: entries
+      title: Arbeidserfaring
+      items:
+          - title: Arbeidspraksis, IT og media
+            period:
+                start: 2024
+                end: 2025
+            subtitle: Bragd Utvikling
+            description: >-
+                Her begynte jeg å programmere. Startet med Python og laget en app i
+                Django, før jeg gikk over til React, med veiledning fra en utvikler.
+                Holdt teknologikurs for kollegaer og bidro med medieproduksjon og
+                drift av Google Workspace.
+
+          - title: Miljøarbeider
+            period:
+                start: 2022
+                end: 2023
+            subtitle: Østre Toten kommune
+            description: >-
+                Tilrettelegging og oppfølging av brukere med spesielle behov, i tett
+                samarbeid med kollegaer og pårørende.
+
+          - title: Salgs- og servicemedarbeider
+            period:
+                start: 2020
+                end: 2022
+            subtitle: KIWI
+            description: Kundeservice, kasse og varehåndtering i en travel butikk.

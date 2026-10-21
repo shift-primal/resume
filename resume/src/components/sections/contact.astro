@@ -1,0 +1,25 @@
+---
+import type { ContactSection } from "#/lib/types";
+import SideSection from "#/components/ui/side-section.astro";
+import Icon from "#/components/ui/icon.astro";
+
+type Props = ContactSection;
+const { title, items } = Astro.props;
+---
+
+<SideSection title={title}>
+	<ul class="contact">
+		{items.map((item) => {
+			const Tag = item.href ? "a" : "span";
+
+			return (
+				<li>
+					<Tag href={item.href} class="contact-row">
+						<Icon name={item.icon} />
+						<span>{item.label}</span>
+					</Tag>
+				</li>
+			);
+		})}
+	</ul>
+</SideSection>

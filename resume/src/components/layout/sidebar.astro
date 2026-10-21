@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets";
+import type { Cv } from "#/lib/types";
+import Contact from "#/components/sections/contact.astro";
+
+interface Props {
+	photo: Cv["photo"];
+	sections: Cv["sidebar"];
+}
+
+const { photo, sections } = Astro.props;
+---
+
+<aside class="sidebar">
+	<Image class="photo" src={photo.src} alt={photo.alt} width={640} />
+
+	{sections.map(
+		(section) => section.type === "contact" && <Contact {...section} />,
+	)}
+</aside>

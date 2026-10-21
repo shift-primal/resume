@@ -1,0 +1,43 @@
+---
+import Phone from "@northsoon/phosphor-icons-astro/icons/Phone.astro";
+import Envelope from "@northsoon/phosphor-icons-astro/icons/Envelope.astro";
+import MapPin from "@northsoon/phosphor-icons-astro/icons/MapPin.astro";
+import Globe from "@northsoon/phosphor-icons-astro/icons/Globe.astro";
+import GithubLogo from "@northsoon/phosphor-icons-astro/icons/GithubLogo.astro";
+import GraduationCap from "@northsoon/phosphor-icons-astro/icons/GraduationCap.astro";
+import Monitor from "@northsoon/phosphor-icons-astro/icons/Monitor.astro";
+import HardDrives from "@northsoon/phosphor-icons-astro/icons/HardDrives.astro";
+import Database from "@northsoon/phosphor-icons-astro/icons/Database.astro";
+import Cloud from "@northsoon/phosphor-icons-astro/icons/Cloud.astro";
+import Key from "@northsoon/phosphor-icons-astro/icons/Key.astro";
+import Flask from "@northsoon/phosphor-icons-astro/icons/Flask.astro";
+import Wrench from "@northsoon/phosphor-icons-astro/icons/Wrench.astro";
+import type { IconKey } from "#/lib/icons";
+
+const icons: Record<IconKey, typeof Phone> = {
+	phone: Phone,
+	mail: Envelope,
+	"map-pin": MapPin,
+	globe: Globe,
+	github: GithubLogo,
+	school: GraduationCap,
+	monitor: Monitor,
+	server: HardDrives,
+	database: Database,
+	cloud: Cloud,
+	"key-round": Key,
+	"flask-conical": Flask,
+	wrench: Wrench,
+};
+
+interface Props {
+	name: IconKey;
+	size?: string;
+	class?: string;
+}
+
+const { name, ...rest } = Astro.props;
+const Component = icons[name];
+---
+
+<Component {...rest} />

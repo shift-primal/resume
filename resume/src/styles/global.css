@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+:root {
+	--navy: #323d53; /* header, section bars, headings */
+	--accent: #dce8fb; /* photo frame, header stripe, text selection */
+	--text: #1a1a1a;
+	--muted: #6b7280; /* meta, dates, tech stacks */
+	--paper: #ffffff;
+
+	--font-body: "Poppins", sans-serif;
+	--font-name:
+		"TeX Gyre Heros", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	/* Type roles */
+	--type-name: 32pt;
+	--type-role: 13pt;
+	--type-heading: 11pt; /* section headings, both columns */
+	--type-title: 10.5pt; /* project and job titles */
+	--type-body: 8.5pt; /* all running text, both columns */
+	--type-small: 7.8pt; /* tech stacks */
+	--leading-prose: 1.45; /* main column, ~75 characters per line */
+	--leading-list: 1.4; /* sidebar, ~40 characters per line */
+
+	--page-top: 10mm; /* photo top = cap height of the name */
+	--page-side: 13.6mm;
+	--header-height: 51mm; /* navy band incl. light stripe */
+	--header-rule: 2.6mm; /* navy rule below the stripe */
+	--sidebar-width: 54.5mm;
+	--column-gap: 12mm;
+
+	/* Spacing scale: tight inside a group, generous between groups */
+	--space-1: 1mm; /* list rows */
+	--space-2: 2mm; /* icon to label, between skill groups */
+	--space-3: 3mm; /* heading to its content */
+	--space-4: 4mm; /* between entries */
+	--space-6: 6mm; /* between sections */
+}
+
+/* Helvetica design for the name (GUST Font License), shipped with the
+   page so the PDF looks the same whichever machine prints it */
+@font-face {
+	font-family: "TeX Gyre Heros";
+	src: url("assets/fonts/texgyreheros-regular.otf") format("opentype");
+	font-weight: 400;
+	font-display: block;
+}
+
+@font-face {
+	font-family: "TeX Gyre Heros";
+	src: url("assets/fonts/texgyreheros-bold.otf") format("opentype");
+	font-weight: 700;
+	font-display: block;
+}
+
+/* ==========================================================
+   Page setup (A4)
+   ========================================================== */
+@page {
+	size: A4;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background: #8a8f99;
+}
+
+body {
+	font-family: var(--font-body);
+	color: var(--text);
+	-webkit-print-color-adjust: exact;
+	print-color-adjust: exact;
+	padding: 10mm 0;
+}
+
+.page {
+	position: relative;
+	width: 210mm;
+	height: 297mm;
+	margin: 0 auto;
+	overflow: hidden;
+	background: var(--paper);
+	box-shadow: 0 2mm 8mm rgb(0 0 0 / 0.3);
+}
+
+@media print {
+	html {
+		background: none;
+	}
+	body {
+		padding: 0;
+	}
+	.page {
+		margin: 0;
+		box-shadow: none;
+	}
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Screen preview only: the PDF has no pointer or keyboard */
+@media screen {
+	::selection {
+		background: var(--accent);
+		color: var(--navy);
+	}
+
+	a:hover {
+		text-decoration: underline;
+		text-decoration-thickness: from-font;
+		text-underline-offset: 0.2em;
+	}
+
+	a:focus-visible {
+		outline: 0.5mm solid var(--navy);
+		outline-offset: 0.6mm;
+		border-radius: 0.4mm;
+	}
+}
+
+ul {
+	list-style: none;
+}
+
+/* ==========================================================
+   Decorative background
+   ========================================================== */
+.header-band {
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: var(--header-height);
+	background: var(--navy);
+	border-bottom: 1.4mm solid var(--accent);
+	box-shadow: 0 var(--header-rule) 0 var(--navy);
+}
+
+/* ==========================================================
+   Two-column layout
+   ========================================================== */
+/* The name comes first in the source (read first by screen readers
+   and CV parsers) but sits beside the photo, so place it by grid */
+.layout {
+	position: relative;
+	display: grid;
+	grid-template-columns: var(--sidebar-width) 1fr;
+	grid-template-rows: auto 1fr; /* fr row absorbs the tall sidebar */
+	column-gap: var(--column-gap);
+	row-gap: var(--space-6);
+	padding: var(--page-top) var(--page-side) 0;
+}
+
+.name-block {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+.sidebar {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+}
+
+.main {
+	grid-column: 2;
+	grid-row: 2;
+}
+
+/* ==========================================================
+   Left column
+   ========================================================== */
+.photo {
+	display: block;
+	width: 100%;
+	height: 65mm;
+	object-fit: cover;
+	object-position: center;
+	border: 1mm solid var(--accent);
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+	font-size: var(--type-body);
+	line-height: var(--leading-list);
+}
+
+/* The short underline is a background, not a positioned pseudo-element:
+   positioned boxes are painted last, which moved these headings to the
+   end of the PDF's text and cut them off from their sections */
+.side-section h2 {
+	font-size: var(--type-heading);
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--navy);
+	padding-bottom: var(--space-2);
+	margin-bottom: var(--space-3);
+	background: linear-gradient(var(--navy), var(--navy)) left bottom / 10mm
+		0.6mm no-repeat;
+}
+
+.contact {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+}
+
+.contact li,
+.contact a {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.contact img {
+	width: 3.6mm;
+	height: 3.6mm;
+	flex-shrink: 0;
+}
+
+.edu h3,
+.skills dt {
+	font-size: var(--type-body);
+	font-weight: 600;
+}
+
+.edu h3,
+.skills dt {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+}
+
+.edu h3 img,
+.skills dt img {
+	width: 3.2mm;
+	height: 3.2mm;
+	flex-shrink: 0;
+}
+
+/* Label sits tight on its list; the next label gets air above it */
+.skills dd + dt {
+	margin-top: var(--space-2);
+}
+
+/* ==========================================================
+   Right column
+   ========================================================== */
+/* Ends where the header's navy rule ends, so the first section
+   always sits one section gap below the header */
+.name-block {
+	height: calc(var(--header-height) + var(--header-rule) - var(--page-top));
+	color: #fff;
+}
+
+.name-block h1 {
+	font-family: var(--font-name);
+	font-size: var(--type-name);
+	line-height: 1.12;
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	text-box: trim-both cap alphabetic;
+}
+
+.first-name,
+.last-name {
+	display: block;
+}
+
+.first-name {
+	font-weight: 400;
+}
+
+.last-name {
+	font-weight: 700;
+}
+
+.role {
+	margin-top: 5.5mm;
+	font-size: var(--type-role);
+	font-weight: 300;
+	letter-spacing: 0.08em;
+	text-box: trim-both cap alphabetic;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-6);
+	font-size: var(--type-body);
+	line-height: var(--leading-prose);
+}
+
+.main p {
+	text-wrap: pretty;
+}
+
+/* Navy bar headings */
+.main-section h2 {
+	background: var(--navy);
+	color: #fff;
+	font-size: var(--type-heading);
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	line-height: 7mm;
+	padding-left: 3.6mm;
+	margin-bottom: var(--space-3);
+}
+
+/* Projects and jobs */
+.entry + .entry {
+	margin-top: var(--space-4);
+}
+
+.entry-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: var(--space-4);
+}
+
+.entry-head h3 {
+	font-size: var(--type-title);
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+/* Dates, status and links keep to one line; a long title wraps instead */
+.entry-head .entry-meta,
+.entry-link {
+	flex-shrink: 0;
+	white-space: nowrap;
+}
+
+.entry-meta {
+	color: var(--muted);
+}
+
+/* Same navy voice as .entry-sub, so the link doesn't outweigh the title */
+.entry-link {
+	font-weight: 500;
+	color: var(--navy);
+}
+
+.entry-sub {
+	font-weight: 500;
+	color: var(--navy);
+}
+
+.entry-tech {
+	font-size: var(--type-small);
+	color: var(--muted);
+}
+
+/* Keeps a hyphenated term from splitting at its hyphen */
+.nowrap {
+	white-space: nowrap;
+}
